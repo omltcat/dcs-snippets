@@ -1,0 +1,2 @@
+#  DCS Lua Script Snippets
+This repository contains a collection of Lua script snippets for convenience and reuse. I don't claim to be the author of all of these codes. Credits are given at the top of each file if applicable.
