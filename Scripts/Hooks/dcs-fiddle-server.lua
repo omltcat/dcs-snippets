@@ -7,15 +7,20 @@ FIDDLE = {}
 -- Congiguration
 --=============================================================================
 
--- Configs:
+-- By default, mission env is on port 12080 and GUI env on 12081 (mission +1)
+-- This is what access from https://dcsfiddle.pages.dev/ uses.
+
 FIDDLE.PORT = 12080             -- keep this at 12080 if you also want to use the DCS Fiddle website.
-FIDDLE.BIND_IP = '127.0.0.1'    -- change to '0.0.0.0' for remote access
+FIDDLE.BIND_IP = '127.0.0.1'    -- Use '0.0.0.0' for remote access, default is '127.0.0.1'
 FIDDLE.AUTH = true              -- set to true to enable basic auth, recommended for public servers.
-FIDDLE.USERNAME = 'username'
-FIDDLE.PASSWORD = 'password'
-FIDDLE.BYPASS_LOCAL = true      -- allow requests to 127.0.0.1:12080 without auth.
--- Auth is added by the VS Code extension. This bypass allows DCS Fiddle website to still work. 
--- (Not a very secure implementation. Use at your own risk if your 12080 port is public)
+FIDDLE.USERNAME = 'username'        -- username for basic auth
+FIDDLE.PASSWORD = 'password'        -- password for basic auth
+FIDDLE.BYPASS_LOCAL = true      -- allow requests to 127.0.0.1:12080-12081 without auth.
+-- This local bypass allows DCS Fiddle website to still work. 
+-- It uses host header to determine if the request is local.
+-- This is not the most secure method and can be spoofed. Use with remote access at your own risk.
+-- Use a reverse proxy for best security, 
+-- see (https://github.com/omltcat/dcs-lua-runner/blob/master/INSTALL.md#script-configuration)
 
 --=============================================================================
 -- End of Configuration
