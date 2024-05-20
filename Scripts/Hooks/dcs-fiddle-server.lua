@@ -22,6 +22,8 @@ FIDDLE.BYPASS_LOCAL = true      -- allow requests to 127.0.0.1:12080-12081 witho
 -- Use a reverse proxy for best security, 
 -- see (https://github.com/omltcat/dcs-lua-runner/blob/master/INSTALL.md#script-configuration)
 
+FIDDLE.LOG_LEVEL = 0    -- 0 = debug, 1 = info, 2 = errors only
+
 --=============================================================================
 -- End of Configuration
 --=============================================================================
@@ -683,7 +685,8 @@ end
 ------------------------------------------------------------------------------------------------------------------------
 
 local __debug = function(message)
-    local message = '[dcs-fiddle-server] - ' .. message
+    if FIDDLE.LOG_LEVEL > 0 then return end
+    message = '[dcs-fiddle-server] - ' .. message
     if (log and log.debug) then
         log.debug(message)
     else
@@ -692,7 +695,8 @@ local __debug = function(message)
 end
 
 local __info = function(message)
-    local message = '[dcs-fiddle-server] - ' .. message
+    if FIDDLE.LOG_LEVEL > 1 then return end
+    message = '[dcs-fiddle-server] - ' .. message
     if (log and log.info) then
         log.info(message)
     else
@@ -701,7 +705,7 @@ local __info = function(message)
 end
 
 local __error = function(message)
-    local message = '[dcs-fiddle-server] - ' .. message
+    message = '[dcs-fiddle-server] - ' .. message
     if (log and log.error) then
         log.error(message)
     else
