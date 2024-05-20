@@ -51,7 +51,7 @@ function HookAdmin.onPlayerTryConnect(addr, ucid, name, id)
 end
 
 function HookAdmin:healthCheck()
-    return self.frameCounter
+    return DCS.getModelTime()
 end
 
 function HookAdmin.onSimulationFrame()
