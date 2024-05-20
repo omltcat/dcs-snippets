@@ -124,7 +124,7 @@ local function encode_table(val, stack)
     stack = stack or {}
 
     -- Circular reference?
-    if stack[val] then error("circular reference") end
+    if stack[val] then return '"<error: circular reference>"' end
 
     stack[val] = true
 
@@ -167,6 +167,9 @@ local function encode_number(val)
     return string.format("%.14g", val)
 end
 
+local function encode_function(val)
+    return string.format('"<%s>"', tostring(val))
+end
 
 local type_func_map = {
     [ "nil"     ] = encode_nil,
@@ -174,6 +177,7 @@ local type_func_map = {
     [ "string"  ] = encode_string,
     [ "number"  ] = encode_number,
     [ "boolean" ] = tostring,
+    [ "function"] = encode_function,
 }
 
 
