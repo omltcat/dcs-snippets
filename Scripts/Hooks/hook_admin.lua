@@ -50,6 +50,14 @@ function HookAdmin.onPlayerTryConnect(addr, ucid, name, id)
     end
 end
 
+---@param text string
+---@param displayTime number
+---@param clearview boolean
+function HookAdmin.outText(text, displayTime, clearview)
+    if DCS.getPause() then return false end
+    return net.dostring_in('mission', string.format([[a_do_script('trigger.action.outText("%s", %s, %s)')]], text, displayTime or 10, tostring(clearview)))
+end
+
 function HookAdmin:healthCheck()
     return DCS.getModelTime()
 end
@@ -67,4 +75,4 @@ end
 DCS.setUserCallbacks(HookAdmin)
 
 _G.HookAdmin = HookAdmin
-_G.FIDDLE_LOG_LEVEL = 2
+-- _G.FIDDLE_LOG_LEVEL = 2
