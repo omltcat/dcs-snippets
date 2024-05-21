@@ -75,4 +75,4 @@ end
 DCS.setUserCallbacks(HookAdmin)
 
 _G.HookAdmin = HookAdmin
--- _G.FIDDLE_LOG_LEVEL = 2
+_G.FIDDLE_LOG_LEVEL = 2
