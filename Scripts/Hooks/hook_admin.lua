@@ -62,14 +62,25 @@ function HookAdmin:healthCheck()
     return DCS.getModelTime()
 end
 
+function HookAdmin:statusReport()
+    local status = {
+        missionFile = DCS.getMissionFilename(),
+        missionTime = DCS.getModelTime(),
+        playerList = HookAdmin.getPlayerList(),
+        fps = HookAdmin.fps,
+        pasued = DCS.getPause(),
+    }
+    return status
+end
+
 function HookAdmin.onSimulationFrame()
     HookAdmin.frameCounter = HookAdmin.frameCounter + 1
-    -- if HookAdmin.frameCounter >= 300 then
-    --     HookAdmin.frameCounter = 0
-    --     local timeEnd = DCS.getRealTime()
-    --     HookAdmin.fps = 300 / (timeEnd - HookAdmin.timeStart)
-    --     HookAdmin.timeStart = timeEnd
-    -- end
+    if HookAdmin.frameCounter >= 300 then
+        HookAdmin.frameCounter = 0
+        local timeEnd = DCS.getRealTime()
+        HookAdmin.fps = 300 / (timeEnd - HookAdmin.timeStart)
+        HookAdmin.timeStart = timeEnd
+    end
 end
 
 DCS.setUserCallbacks(HookAdmin)
