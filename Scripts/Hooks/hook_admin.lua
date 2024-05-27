@@ -68,7 +68,7 @@ function HookAdmin:statusReport()
         missionTime = DCS.getModelTime(),
         playerList = HookAdmin.getPlayerList(),
         fps = HookAdmin.fps,
-        pasued = DCS.getPause(),
+        paused = DCS.getPause(),
     }
     return status
 end
