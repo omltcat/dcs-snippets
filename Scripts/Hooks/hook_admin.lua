@@ -32,7 +32,9 @@ function HookAdmin.kickName(name)
     local players = HookAdmin.getPlayerListID()
     if players[name] then
         net.kick(players[name])
+        return true
     end
+    return name
 end
 
 function HookAdmin.banName(name)
@@ -41,7 +43,9 @@ function HookAdmin.banName(name)
         local ucid = net.get_player_info(players[name], 'ucid')
         HookAdmin.tempBanList[ucid] = true
         net.kick(players[name])
+        return true
     end
+    return name
 end
 
 function HookAdmin.onPlayerTryConnect(addr, ucid, name, id)
